@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
+  <title>ChatApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/index.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
 </head>
-
 <body>
-  <p>
-    Welcome to the chat app!
-  </p>
+  <form id="login" action="/chat.html">
+    <div>
+      <label>Username</label>
+      <input type="text" name="username">
+    </div>
 
-  <ol id="messageList">
-    
-  </ol>
+    <div>
+      <label>Chat room</label>
+      <input type="text" name="chatroom">
+    </div>
 
-  <form id="messageForm">
-    <input type="text" />
-    <button type="submit">Send</button>
+    <button type="submit">Go</button>
   </form>
-
-  <script src="/socket.io/socket.io.js"></script>
   
-  <script src="/js/index.js"></script>
 </body>
-
 </html>

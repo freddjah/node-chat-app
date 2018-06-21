@@ -1,0 +1,49 @@
+body {
+  background-color: #4a6fb1;
+  padding-top: 50px;
+  font-family: 'Roboto Slab', serif;
+}
+
+#login {
+  margin-top: 50px;
+  width: 600px;
+  margin: auto;
+  background-color: cornflowerblue;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+#login div:nth-child(even) {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#login label {
+  display: block;
+  font-size: 30px;
+}
+
+#login input {
+  margin: auto;
+  padding: 10px;
+  height: 25px;
+  font-size: 20px;
+  width: 90%;
+}
+
+#login button {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  text-decoration: underline;
+  color: white;
+  padding: 20px;
+}
+
+#login button:hover {
+  color: black;
+  background-color: white;
+  cursor: pointer;
+}
