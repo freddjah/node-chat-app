@@ -10,22 +10,31 @@ const io = socketIO(server)
 const port = process.env.PORT || 3000
 const publicPath = path.join(__dirname, '../public')
 const { generateMessage } = require('./utils/message')  
+const { addUser, removeUser, getUser } = require('./utils/users')
 
 app.use(express.static(publicPath))
 
 io.on('connection', (socket) => {
   console.log(`New user connected with ID ${socket.id}.`)
 
-  socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app.'))
+  socket.on('joinRoom', ({ username, room }, callback) => {
+    try {
+      addUser(username, room, socket.id)
+      socket.join(room)
+      socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app.'))
+      socket.broadcast.to(room).emit('newMessage', generateMessage('Admin', `${username} just joined the room.`))
+    } catch (error) {
+      callback(error.message)
+    }
+  })
 
-  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined.'))
-
-  socket.on('createMessage', ({ from, text }, callback) => {
-    io.emit('newMessage', generateMessage(from, text))
-    callback('hello')
+  socket.on('createMessage', (text, callback) => {
+    const user = getUser(socket.id)
+    io.to(user.room).emit('newMessage', generateMessage(user.username, text))
   })
 
   socket.on('disconnect', () => {
+    removeUser(socket.id)
     console.log(`Client with ID ${socket.id} disconnected.`)
   })
 })

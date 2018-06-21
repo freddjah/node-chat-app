@@ -25,10 +25,20 @@ document
                     .getElementsByTagName('input')[0]
                     .value
     
-    socket.emit('createMessage', {
-      from: 'User',
-      text: input
-    }, function() {
+    socket.emit('createMessage', input, function() {
       
     })
+})
+
+
+// Join room
+
+const params = new URLSearchParams(document.location.search)
+const username = params.get('username')
+const room = params.get('chatroom')
+
+socket.emit('joinRoom', { username, room }, (error) => {
+  if (error) {
+    console.log(error)
+  }
 })
