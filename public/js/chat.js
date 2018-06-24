@@ -1,11 +1,26 @@
 var socket = io()
 
-socket.on('connect', function() {
+socket.on('connect', function () {
   console.log('Connected to server')
 })
 
 socket.on('disconnect', () => {
   console.log('Disconnected from server')
+})
+
+socket.on('addUser', function (user) {
+  let li = document.createElement('li')
+  li.innerText = `${user}`
+
+  document.getElementById('usersList').appendChild(li)
+})
+
+socket.on('removeUser', function (user) {
+  const userList = document.getElementById('usersList')
+
+  usersList.childNodes.forEach(function (li) {
+    if (li.innerText === user) userList.removeChild(li)
+  })
 })
 
 socket.on('newMessage', function (payload) {
@@ -17,7 +32,7 @@ socket.on('newMessage', function (payload) {
 
 document
   .getElementById('messageForm')
-  .addEventListener('submit', function(event) {
+  .addEventListener('submit', function (event) {
     event.preventDefault()
 
     const input = document

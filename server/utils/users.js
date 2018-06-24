@@ -29,10 +29,15 @@ const getUser = (socketId) => {
   return users[socketId]
 }
 
-// getUsernamesInRoom(room)
+const getUsersInRoom = (room) => {
+  return Object.values(users)
+          .filter((user) => user.room === room)
+          .map((user) => user.username)
+}
 
 module.exports = {
   addUser,
   removeUser,
-  getUser
+  getUser,
+  getUsersInRoom
 }
