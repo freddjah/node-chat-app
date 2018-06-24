@@ -41,5 +41,8 @@ document.getElementById('username').innerText = username
 document.getElementById('chatroomName').innerText = room
 
 socket.emit('joinRoom', { username, room }, (error) => {
-  if (error) console.log(error)
+  if (error) {
+    alert(error)
+    document.location.href = '/'
+  }
 })
