@@ -1,8 +1,10 @@
 const generateMessage = (from, text) => {
+  const date = new Date()
+
   return {
     from,
     text,
-    createdAt: new Date().getTime()
+    createdAt: `${date.toLocaleDateString('sv-SV')} ${date.toLocaleTimeString('sv-SV')}`
   }
 }
 

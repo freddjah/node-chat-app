@@ -26,7 +26,7 @@ socket.on('removeUser', function (user) {
 
 socket.on('newMessage', function (payload) {
   let li = document.createElement('li')
-  li.innerText = `${payload.from}: ${payload.text}`
+  li.innerText = `${payload.createdAt} - ${payload.from}: ${payload.text}`
   li.classList.add('list-group-item')
 
   document.getElementById('messageList').appendChild(li)
