@@ -43,12 +43,17 @@ io.on('connection', (socket) => {
 
   socket.on('createMessage', (text, callback) => {
     const user = getUser(socket.id)
+
+    console.log(user)
+
     io.to(user.room).emit('newMessage', generateMessage(user.username, text))
   })
 
   socket.on('disconnect', () => {
     let user = getUser(socket.id)
 
+    if (!user) return
+    
     socket.broadcast.to(user.room).emit('newMessage', generateMessage('Admin', `${user.username} left the room.`))
     // Ask others to remove user from their list of current users in the room.
     socket.to(user.room).emit('removeUser', user.username)

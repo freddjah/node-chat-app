@@ -11,6 +11,7 @@ socket.on('disconnect', () => {
 socket.on('addUser', function (user) {
   let li = document.createElement('li')
   li.innerText = `${user}`
+  li.classList.add('list-group-item')
 
   document.getElementById('usersList').appendChild(li)
 })
@@ -26,6 +27,7 @@ socket.on('removeUser', function (user) {
 socket.on('newMessage', function (payload) {
   let li = document.createElement('li')
   li.innerText = `${payload.from}: ${payload.text}`
+  li.classList.add('list-group-item')
 
   document.getElementById('messageList').appendChild(li)
 })
@@ -35,14 +37,15 @@ document
   .addEventListener('submit', function (event) {
     event.preventDefault()
 
-    const input = document
+    const inputField = document
                     .getElementById('messageForm')
                     .getElementsByTagName('input')[0]
-                    .value
     
-    socket.emit('createMessage', input, function() {
+    socket.emit('createMessage', inputField.value, function() {
       
     })
+
+    inputField.value = ''
 })
 
 

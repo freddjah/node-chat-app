@@ -3,33 +3,65 @@
 
 <head>
   <meta charset="utf-8" />
+  <title>ChatApp</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/chat.css">
 </head>
 
 <body>
-  <p>
-    Welcome to the chat app!
-  </p>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">
+        Welcome to the chat app!
+      </h1>
 
-  <p>
-    Chatroom name: <span id="chatroomName"></span>
-  </p>
+      <p class="lead">
+        Room: <span id="chatroomName"></span>
+      </p>
 
-  <p>
-    Username: <span id="username"></span>
-  </p>
-
-  <ol id="usersList"></ol>
-
-  <div>
-    <h1>Messages:</h1>
-    
-    <ol id="messageList"></ol>
+      <p class="lead">
+        Username: <span id="username"></span>
+      </p>
+    </div>
   </div>
 
-  <form id="messageForm">
-    <input type="text" />
-    <button type="submit">Send</button>
-  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-lg-2">
+        <h1>
+          Users
+        </h1>
+
+        <ul class="list-group list-group-flush" id="usersList">
+          <!-- Users in current room will be shown here-->
+        </ul>
+      </div>
+    
+      <div class="col-sm-12 col-lg-10">
+        <h1>Messages</h1>
+          
+        <ul class="list-group list-group-flush" id="messageList">
+          <!-- Messages in chatroom will be shown here-->
+        </ul>
+
+        <form class="form-row col-lg-12 mt-4" id="messageForm">
+          <div class="col-lg-8">
+            <input class="form-control" type="text" placeholder="Enter your message..." required/>
+          </div>
+
+          <div class="col-lg-4">
+            <button class="btn btn-success" type="submit">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <script src="/socket.io/socket.io.js"></script>
   
